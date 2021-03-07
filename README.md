@@ -1,5 +1,8 @@
 # NCHU_topic_homework
 
+[![hackmd-github-sync-badge](https://hackmd.io/uK0dMvDVQ2i5qGPHrwSvoA/badge)](https://hackmd.io/uK0dMvDVQ2i5qGPHrwSvoA)
+
+
 > 專題作業
 
 ###### tags: `Python` `專題`
