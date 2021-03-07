@@ -10,25 +10,28 @@ payload = {
     'from': '/bbs/Gossiping/index.html',
     'yes': 'yes'
 }
-data = {}
+data = {}   # 全部文章的資料
 num = 0
 
-# request抓取頁面HTML
+# 用session紀錄此次使用的cookie
 rs = requests.session()
 response = rs.post("https://www.ptt.cc/ask/over18", data=payload)
 
+# 爬取兩頁
 for i in range(2):
+    # get取得頁面的HTML
     # print(url)
     response = rs.get(url)
     soup = BeautifulSoup(response.text, "html.parser")
     # print(soup.prettify())
 
-    # 找出title的連結
+    # 找出每篇文章的連結
     links = soup.find_all("div", class_="title")
     for link in links:
+        # 如果文章已被刪除，連結為None
         if link.a != None:
 
-            article_data = {}
+            article_data = {}   # 單篇文章的資料
             page_url = "https://www.ptt.cc/"+link.a["href"]
 
             # 進入文章頁面
@@ -44,11 +47,10 @@ for i in range(2):
             title = article_info[2].string  # 標題
             time = article_info[3].string   # 時間
 
-            # contents = main_content.string
-
             # print(author)
             # print(title)
             # print(time)
+
             article_data["author"] = author
             article_data["title"] = title
             article_data["time"] = time
@@ -104,6 +106,7 @@ for i in range(2):
             # print(arrow_dic)
             # print(shu_dic)
             # print("--------")
+
             comment_dic["推"] = push_dic
             comment_dic["→"] = arrow_dic
             comment_dic["噓"] = shu_dic
@@ -114,8 +117,10 @@ for i in range(2):
             num += 1
             print("第 "+str(num)+" 篇文章完成!")
 
+    # 找到上頁的網址，並更新url
     url = "https://www.ptt.cc/"+soup.find("a", string="‹ 上頁")["href"]
 
 # print(data)
+# 輸出JSON檔案
 with open('data.json', 'w', encoding='utf-8') as f:
     json.dump(data, f)
