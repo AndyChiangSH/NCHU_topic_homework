@@ -10,7 +10,7 @@ payload = {
     'from': '/bbs/Gossiping/index.html',
     'yes': 'yes'
 }
-data = {}   # 全部文章的資料
+data = []   # 全部文章的資料
 num = 0
 
 # 用session紀錄此次使用的cookie
@@ -43,9 +43,15 @@ for i in range(2):
             main_content = result.find("div", id="main-content")
             article_info = main_content.find_all(
                 "span", class_="article-meta-value")
-            author = article_info[0].string  # 作者
-            title = article_info[2].string  # 標題
-            time = article_info[3].string   # 時間
+
+            if len(article_info) != 0:
+                author = article_info[0].string  # 作者
+                title = article_info[2].string  # 標題
+                time = article_info[3].string   # 時間
+            else:
+                author = "無"  # 作者
+                title = "無"  # 標題
+                time = "無"   # 時間
 
             # print(author)
             # print(title)
@@ -71,9 +77,9 @@ for i in range(2):
 
             # 一種留言一個列表
             comment_dic = {}
-            push_dic = {}
-            arrow_dic = {}
-            shu_dic = {}
+            push_dic = []
+            arrow_dic = []
+            shu_dic = []
 
             # 抓出所有留言
             comments = main_content.find_all("div", class_="push")
@@ -92,15 +98,15 @@ for i in range(2):
                 if push_tag == "推 ":
                     dict1 = {"push_userid": push_userid,
                              "push_content": push_content, "push_time": push_time}
-                    push_dic[index] = dict1
+                    push_dic.append(dict1)
                 if push_tag == "→ ":
                     dict1 = {"push_userid": push_userid,
                              "push_content": push_content, "push_time": push_time}
-                    arrow_dic[index] = dict1
+                    arrow_dic.append(dict1)
                 if push_tag == "噓 ":
                     dict1 = {"push_userid": push_userid,
                              "push_content": push_content, "push_time": push_time}
-                    shu_dic[index] = dict1
+                    shu_dic.append(dict1)
 
             # print(push_dic)
             # print(arrow_dic)
@@ -113,7 +119,7 @@ for i in range(2):
             article_data["comment"] = comment_dic
 
             # print(article_data)
-            data[num] = article_data
+            data.append(article_data)
             num += 1
             print("第 "+str(num)+" 篇文章完成!")
 
