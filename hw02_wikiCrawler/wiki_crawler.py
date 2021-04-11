@@ -5,8 +5,7 @@ import requests
 import os
 
 
-def wiki_search(keyword):
-    url = f"https://zh.wikipedia.org/wiki/{keyword}"    # 維基百科頁面的關鍵字放在網址後面
+def wiki_search(url):
     # 設定語言，繁中優先
     my_header = {"accept-language": "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7"}
 
@@ -22,29 +21,61 @@ def wiki_search(keyword):
 
         links = content_body.select("p>a")  # 找出p底下的a
 
-        links_set = set()
-
         for link in links:
             if link.get("rel") == None:  # 有rel通常是一些不相關的東西，所以把他們去除
                 # print(link.text)
                 links_set.add(link.text)    # 因為set有不重複之特性，所以把值存進set中
 
-        print(f"共找到 {len(links_set)} 筆關鍵字")
-        for i in links_set:
-            print(i)
-
-        if not os.path.exists("data"):  # 建資料夾
-            os.mkdir("data")
-
-        with open(f"data\\{keyword}.txt", "w", encoding="utf-8") as file:   # 寫檔，檔名為關鍵字
-            for i in links_set:
-                file.write(i+"\n")
+        # print(f"共找到 {len(links_set)} 筆關鍵字")
+        # for i in links_set:
+        #     print(i)
     else:
         print("查無此頁")
 
 
 # main
 if __name__ == '__main__':
-    # 輸入關鍵字，如果找的到則輸出連結，沒有則回應查無此頁
-    keyword = input("請輸入搜尋關鍵字 = ")
-    wiki_search(keyword)
+    print("---PROGRAM START---")
+
+    links_set = set()
+    all_url = "https://zh.wikipedia.org/w/index.php?title=Special:%E6%89%80%E6%9C%89%E9%A1%B5%E9%9D%A2&from=%21"
+
+    # i = 0
+    for i in range(3):
+        my_header = {"accept-language": "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7"}
+
+        response = requests.get(all_url, headers=my_header)
+        soup = BeautifulSoup(response.text, "html.parser")
+        # print(soup.prettify())
+
+        pages_li = soup.find("ul", class_="mw-allpages-chunk").find_all("li")
+
+        for page_li in pages_li:
+            page_url = "https://zh.wikipedia.org/"+page_li.a["href"]
+            # print(page_url)
+
+            wiki_search(page_url)
+
+            page_text = page_li.text
+            print(page_text)
+
+        if i == 0:
+            all_url = "https://zh.wikipedia.org/" + \
+                soup.find("div", class_="mw-allpages-nav").a["href"]
+        else:
+            next_page = soup.find(
+                "div", class_="mw-allpages-nav").find_all("a")[1]["href"]
+            if next_page != None:
+                all_url = "https://zh.wikipedia.org/" + next_page
+            else:
+                break
+
+        # print("next page: "+all_url)
+        print("page "+str(i+1)+" complete!")
+        i += 1
+
+    with open(f"D:/專題/hw02/metaData.txt", "w", encoding="utf-8") as file:   # 寫檔
+        for i in links_set:
+            file.write(i+"\n")
+
+    print("---PROGRAM END---")
