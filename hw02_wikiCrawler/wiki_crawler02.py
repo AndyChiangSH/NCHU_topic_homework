@@ -19,12 +19,20 @@ def wiki_search(url):
 
     if first_class[0] != "noarticletext":   # 如果該頁面存在
 
-        links = content_body.select("p>a")  # 找出p
+        contents = content_body.find_all(["p", "li"])  # 找出所有的p和li
 
-        for link in links:
-            if link.get("rel") == None:  # 有rel通常是一些不相關的東西，所以把他們去除
-                # print(link.text)
-                links_set.add(link.text)    # 因為set有不重複之特性，所以把值存進set中
+        for content in contents:
+
+            links = content.find_all("a")   # 找出底下的a
+
+            for link in links:
+                # 有rel通常是一些不相關的東西，所以把他們去除
+                if link.get("rel") == None:
+                    if link.get("href") != None:
+                        if link.get("href")[0] != "#":
+                            # print(link.text)
+                            # 因為set有不重複之特性，所以把值存進set中
+                            links_set.add(link.text)
 
         # print(f"共找到 {len(links_set)} 筆關鍵字")
         # for i in links_set:

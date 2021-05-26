@@ -1,0 +1,3 @@
+python D:\雲端\NCHU\專題\homework\hw02_wikiCrawler\wiki_crawler.py
+
+python D:\雲端\NCHU\專題\homework\hw02_wikiCrawler\wiki_crawler02.py
