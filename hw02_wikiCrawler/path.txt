@@ -1,3 +1,9 @@
 python D:\雲端\NCHU\專題\homework\hw02_wikiCrawler\wiki_crawler.py
 
 python D:\雲端\NCHU\專題\homework\hw02_wikiCrawler\wiki_crawler02.py
+
+python D:\雲端\NCHU\專題\homework\hw02_wikiCrawler\FindHyperLinkText.py
+
+python D:\雲端\NCHU\專題\homework\hw02_wikiCrawler\wiki_crawler05.py
+
+python D:\雲端\NCHU\專題\homework\hw02_wikiCrawler\wiki_crawler06.py

@@ -5,11 +5,11 @@ import requests
 import os
 
 
-def wiki_search(url):
+def wiki_search(rs, url):
     # 設定語言，繁中優先
     my_header = {"accept-language": "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7"}
 
-    response = requests.get(url, headers=my_header)
+    response = rs.get(url, headers=my_header)
     soup = BeautifulSoup(response.text, "html.parser")
     # print(soup.prettify())
 
@@ -47,12 +47,13 @@ if __name__ == '__main__':
 
     links_set = set()
     all_url = "https://zh.wikipedia.org/w/index.php?title=Special:%E6%89%80%E6%9C%89%E9%A1%B5%E9%9D%A2&from=%21"
+    rs = requests.session()
 
     i = 0
     while True:
         my_header = {"accept-language": "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7"}
 
-        response = requests.get(all_url, headers=my_header)
+        response = rs.get(all_url, headers=my_header)
         soup = BeautifulSoup(response.text, "html.parser")
         # print(soup.prettify())
 
@@ -62,7 +63,7 @@ if __name__ == '__main__':
             page_url = "https://zh.wikipedia.org/"+page_li.a["href"]
             # print(page_url)
 
-            wiki_search(page_url)
+            wiki_search(rs, page_url)
 
             page_text = page_li.text
             print(page_text)
