@@ -1,30 +1,8 @@
-# 專題作業03-切割文章段落
+# 專題作業03-NetworkX graph
 
 import networkx as nx
 import matplotlib.pyplot as plt
-
-# 尋找段落中出現的人名
-
-
-def names_in_paragraph(paragraph):
-    # print(paragraph)
-    appear_names = list()
-    for name in names:
-        if name in paragraph:
-            appear_names.append(name)
-
-    # print("one paragraph")
-    # print(appear_names)
-
-    for i in range(len(appear_names)):
-        first_name = appear_names[i]
-        for j in range(i+1, len(appear_names)):
-            second_name = appear_names[j]
-            # print(f"[{first_name}, {second_name}]")
-            if NG.has_edge(first_name, second_name):
-                NG[first_name][second_name]["weight"] += 1
-            else:
-                NG.add_edge(first_name, second_name, weight=1)
+import csv
 
 
 if __name__ == '__main__':  # main
@@ -38,33 +16,19 @@ if __name__ == '__main__':  # main
     # print(names)
 
     NG = nx.Graph()
-    NG.add_nodes_from(names)
+    NG.add_nodes_from(names)    # 空的點也會出來
     # print(NG.nodes())
     # print(NG.number_of_nodes())
 
-    for i in range(1, 5):
-        path = f"D:/專題/data/hw03/0{i}.txt"
-        print(f"Read {path} now...")
+    # 開啟 CSV 檔案
+    with open('graph.csv', newline='') as csvfile:
+        # 讀取 CSV 檔案內容
+        rows = csv.reader(csvfile)
 
-        with open(path, "r", encoding="utf-8") as file:
-            paragraph = ""
-            isParagraph = False
-            while True:
-                c = file.read(1)
-                # print(f"c = {c}")
-                if c == "":  # 讀到EOF
-                    break
-                if isParagraph:
-                    if c == "\n":   # 如果是換行，轉換成非paragraph模式(空白行模式)
-                        isParagraph = False
-                        names_in_paragraph(paragraph)
-                        paragraph = ""
-                    else:
-                        paragraph += c
-                else:
-                    if c != "\n" and c != "\u3000":  # 如果不是換行或全形空白，轉換成paragraph模式
-                        isParagraph = True
-                        paragraph += c
+        # 以迴圈輸出每一列
+        for index, row in enumerate(rows):
+            if index != 0:
+                NG.add_edge(row[0], row[1], weight=int(row[2]))
 
     for (u, v, wt) in NG.edges.data('weight'):
         print(f"({u}, {v}, {wt})")
