@@ -1,6 +1,6 @@
 # 專題作業03-切割文章段落
 
-path = r"D:/專題/data/hw03/test.txt"
+path = r"../src/test.txt"
 paragraphs = list()
 
 

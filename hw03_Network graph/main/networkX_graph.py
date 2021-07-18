@@ -1,4 +1,4 @@
-# 專題作業03-NetworkX graph
+# 專題作業03-讀取資料並產生NetworkX graph
 
 import networkx as nx
 import matplotlib.pyplot as plt
@@ -7,7 +7,7 @@ import csv
 
 if __name__ == '__main__':  # main
 
-    names_path = r"D:/專題/data/hw03/charater_names.txt"
+    names_path = r"../src/charater_names.txt"
 
     with open(names_path, "r", encoding="utf-8") as file:
         lines = file.readlines()
@@ -21,7 +21,7 @@ if __name__ == '__main__':  # main
     # print(NG.number_of_nodes())
 
     # 開啟 CSV 檔案
-    with open('graph.csv', newline='') as csvfile:
+    with open(r'../data/graph_data.csv', newline='') as csvfile:
         # 讀取 CSV 檔案內容
         rows = csv.reader(csvfile)
 

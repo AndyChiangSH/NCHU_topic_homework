@@ -1,4 +1,4 @@
-# 專題作業03-切割文章段落
+# 專題作業03-計算人物間關係並產出csv檔
 
 import networkx as nx
 import matplotlib.pyplot as plt
@@ -25,7 +25,8 @@ def names_in_paragraph(paragraph):  # 尋找段落中出現的人名
 
 if __name__ == '__main__':  # main
 
-    names_path = r"D:/專題/data/hw03/charater_names.txt"
+    names_path = r"../src/charater_names.txt"
+    csv_path = r"../data/graph_data.csv"
 
     with open(names_path, "r", encoding="utf-8") as file:
         lines = file.readlines()
@@ -39,7 +40,7 @@ if __name__ == '__main__':  # main
     # print(NG.number_of_nodes())
 
     for i in range(1, 5):
-        path = f"D:/專題/data/hw03/0{i}.txt"
+        path = f"../src/0{i}.txt"
         print(f"Read {path} now...")
 
         with open(path, "r", encoding="utf-8") as file:
@@ -63,7 +64,7 @@ if __name__ == '__main__':  # main
                         paragraph += c
 
     # 開啟輸出的 CSV 檔案
-    with open(r'D:/專題/data/hw03/graph.csv', 'w', newline='') as csvfile:
+    with open(csv_path, 'w', newline='') as csvfile:
         # 建立 CSV 檔寫入器
         writer = csv.writer(csvfile)
 

@@ -1,4 +1,4 @@
-# 專題作業03-取得角色名稱
+# 專題作業03-爬維基百科取得角色名稱
 
 from bs4 import BeautifulSoup
 import requests
@@ -14,7 +14,7 @@ soup = BeautifulSoup(response.text, "html.parser")
 # 找到底下電視劇角色的table
 trs = soup.find("table", class_="wikitable").find_all("tr")
 
-with open("charater_names.txt", "w") as file:
+with open("../src/charater_names_new.txt", "w") as file:
     # 第7行到最後一行是人物名稱
     for i in range(7, len(trs)):
         name = trs[i].find("td").text
