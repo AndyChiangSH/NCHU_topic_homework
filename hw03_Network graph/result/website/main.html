@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/mycss.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- 2D network library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+
+    <!-- 3D network library -->
+    <script src="//unpkg.com/three"></script>
+    <script src="//unpkg.com/three-spritetext"></script>
+    <script src="//unpkg.com/three/examples/js/renderers/CSS2DRenderer.js"></script>
+    <script src="//unpkg.com/3d-force-graph"></script>
+
+</head>
+
+<body>
+    <div id="frame"></div>
+    <button id="b1">Turn to 2D</button>
+    <button id="b2">Turn to 3D</button>
+    <script>
+        $(function () {
+            $("#frame").load("2D_network.html")
+            $("#b1").click(function () {
+                // $("#frame").load("2D_network.html")
+                window.location.reload();
+            })
+            $("#b2").click(function () {
+                $("#frame").load("3D_network02.html")
+            })
+        });
+    </script>
+</body>
+
+</html>
