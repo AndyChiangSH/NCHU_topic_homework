@@ -1,25 +1,42 @@
 <head>
+    <style>
+        .node-label {
+            font-size: 12px;
+            padding: 1px 4px;
+            border-radius: 4px;
+            background-color: #11111180;
+            user-select: none;
+        }
+    </style>
+
     <script src="//unpkg.com/three"></script>
     <script src="//unpkg.com/three-spritetext"></script>
-
+    <script src="//unpkg.com/three/examples/js/renderers/CSS2DRenderer.js"></script>
     <script src="//unpkg.com/3d-force-graph"></script>
     <!--<script src="../../dist/3d-force-graph.js"></script>-->
 </head>
 
 <body>
-    <div id="3d-graph"></div>
+    <div id="3d-graph" style="width: 100%; height: 100%;"></div>
 
     <script>
-        const Graph = ForceGraph3D()
+        const Graph = ForceGraph3D({ extraRenderers: [new THREE.CSS2DRenderer()] })
             (document.getElementById('3d-graph'))
+            // load data from json
             .jsonUrl('../../data/graph_data.json')
+
+            // node label
+            .nodeVal(node => node.value)
             .nodeThreeObject(node => {
-                const sprite = new SpriteText(node.id);
-                sprite.material.depthWrite = false; // make sprite background transparent
-                sprite.color = node.color;
-                sprite.textHeight = Math.max(node.value / 5, 3);
-                return sprite;
+                const nodeEl = document.createElement('div');
+                nodeEl.textContent = node.id;
+                nodeEl.style.color = node.color;
+                nodeEl.className = 'node-label';
+                return new THREE.CSS2DObject(nodeEl);
             })
+            .nodeThreeObjectExtend(true)
+
+            // link label
             .linkWidth(link => Math.max(link.value / 100, 0.1))
             .linkThreeObjectExtend(true)
             .linkThreeObject(link => {
@@ -36,9 +53,13 @@
 
                 // Position sprite
                 Object.assign(sprite.position, middlePos);
-            });
+            })
+
+            .height(600)
+            .backgroundColor("#111111")
 
         // Spread nodes a little wider
-        Graph.d3Force('charge').strength(-700);
+        Graph.d3Force('charge').strength(-800);
     </script>
+
 </body>

@@ -1,3 +1,73 @@
-#frame {
+.frame {
     height: 600px;
+}
+
+body {
+    background: #222222;
+    color: white;
+    font-family: 'Nunito', sans-serif;
+}
+
+.title h1 {
+    font-size: 50px;
+    text-align: center;
+    margin: 40px 0px;
+    font-family: MyChinese;
+}
+
+@font-face {
+    font-family: MyChinese;
+    src: url(../font/wt071.ttf);
+}
+
+.view {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0px;
+}
+
+.view button {
+    margin: 0px 20px;
+    font-size: 18px;
+}
+
+.bi {
+    margin-right: 10px;
+}
+
+.container {
+    width: 80%;
+    margin: 80px auto;
+}
+
+.container h2 {
+    font-size: 40px;
+    text-align: center;
+}
+
+.nav-tabs {
+    border-bottom: 2px solid #ffffff;
+}
+
+.nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
+    border-color: #0d6efd #0d6efd #ffffff00;
+    background-color: #ffffff00;
+    isolation: isolate;
+}
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+  color: #ffffff;
+  background-color: #0d6efd;
+  border-color: #0d6efd #0d6efd #ffffff;
+}
+
+.info-card .nav-link {
+    font-size: 20px;
+}
+
+.table, .tab-pane p {
+    color: #ffffff;
+    font-size: 20px;
+    margin: 20px 0px;
 }
