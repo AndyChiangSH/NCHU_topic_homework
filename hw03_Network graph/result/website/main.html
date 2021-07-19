@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>射鵰英雄傳人物關係圖</title>
+    <link rel="icon" href="resource/favicon-01.ico" type="image/x-icon" />
 
     <!-- google font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -63,6 +64,7 @@
 
     <!-- Bootstrap js -->
     <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/my.js"></script>
 </head>
 
 <body>
@@ -83,76 +85,86 @@
     </div>
 
     <div class="container">
-        <h2><i class="bi bi-bar-chart-line-fill"></i>Data</h2>
-        <div class="info-card">
-            <nav>
-                <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <button class="nav-link active" id="nav-nodes-tab" data-bs-toggle="tab" data-bs-target="#nav-nodes"
-                        type="button" role="tab" aria-controls="nav-home" aria-selected="true">Nodes</button>
-                    <button class="nav-link" id="nav-edges-tab" data-bs-toggle="tab" data-bs-target="#nav-edges"
-                        type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Edges</button>
-                </div>
-            </nav>
-            <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="nav-nodes" role="tabpanel" aria-labelledby="nav-nodes-tab">
-                    <p>總共有50個節點</p>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Nodes</th>
-                                <th scope="col">Neighbors</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>郭靖</td>
-                                <td>150</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>黃蓉</td>
-                                <td>120</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>楊康</td>
-                                <td>100</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="tab-pane fade" id="nav-edges" role="tabpanel" aria-labelledby="nav-edges-tab">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Nodes</th>
-                                <th scope="col">Neighbors</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>郭靖</td>
-                                <td>150</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>黃蓉</td>
-                                <td>120</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>楊康</td>
-                                <td>100</td>
-                            </tr>
-                        </tbody>
-                    </table>
+        <!-- data area start -->
+        <div class="data">
+            <h2><i class="bi bi-bar-chart-line-fill"></i>Data</h2>
+            <div class="info-card">
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <button class="nav-link active" id="nav-nodes-tab" data-bs-toggle="tab"
+                            data-bs-target="#nav-nodes" type="button" role="tab" aria-controls="nav-home"
+                            aria-selected="true">Nodes</button>
+                        <button class="nav-link" id="nav-edges-tab" data-bs-toggle="tab" data-bs-target="#nav-edges"
+                            type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Edges</button>
+                    </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-nodes" role="tabpanel"
+                        aria-labelledby="nav-nodes-tab">
+                        <p>There are <span id="nodes-number" class="number"></span> nodes in network graph.</p>
+                        <table id="nodes-table" class="table table-dark table-hover">
+                            <caption>Top 30 nodes</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nodes</th>
+                                    <th scope="col">Degree</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="nav-edges" role="tabpanel" aria-labelledby="nav-edges-tab">
+                        <p>There are <span id="edges-number" class="number"></span> edges in network graph.</p>
+                        <table id="edges-table" class="table table-dark table-hover">
+                            <caption>Top 30 edges</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Source</th>
+                                    <th scope="col">Target</th>
+                                    <th scope="col">Weight</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
+        <!-- data area end -->
+        <!-- reference area start -->
+        <div class="ref">
+            <h2><i class="bi bi-share-fill"></i>Reference</h2>
+            <ul>
+                <li>Novel Soruce：<a target="_blank" href="http://www.haodoo.net/?M=book&P=55#!">好讀 - 金庸《射鵰英雄傳》</a></li>
+                <li>Charater List：<a target="_blank"
+                        href="https://zh.wikipedia.org/wiki/%E5%B0%84%E9%B5%B0%E8%8B%B1%E9%9B%84%E5%82%B3">維基百科 -
+                        射鵰英雄傳</a></li>
+                <li>Python Graph：<a target="_blank"
+                        href="https://networkx.org/documentation/stable/index.html">NetworkX</a></li>
+                <li>2D Network Rendering：<a target="_blank"
+                        href="https://pyvis.readthedocs.io/en/latest/index.html">pyvis</a></li>
+                <li>3D Network Rendering：<a target="_blank"
+                        href="https://vasturiano.github.io/3d-force-graph/">3d-force-graph</a></li>
+                <li>jQuery：<a target="_blank" href="https://jquery.com/">jQuery</a></li>
+                <li>Bootstrap：<a target="_blank" href="https://getbootstrap.com/">Bootstrap</a></li>
+            </ul>
+        </div>
+        <!-- reference area end -->
+    </div>
+    <div class="footer">
+        <div class="info">
+            <p>2021/07/19 江尚軒 專題作業03</p>
+            <a target="_blank"
+                href="https://github.com/AndyChiangSH/NCHU_topic_homework/tree/master/hw03_Network%20graph">
+                <img alt="GitHub Repo stars"
+                    src="https://img.shields.io/github/stars/AndyChiangSH/NCHU_topic_homework?label=GitHub%20Star&style=social">
+            </a>
+        </div>
+        <div class="copyright">Copyright © 2021 Andy Chiang</div>
     </div>
 
 </body>

@@ -82,7 +82,10 @@ if __name__ == '__main__':  # main
 
         if adj != 0:
             nodes.append({"id": node, "color": color, "value": val})
+
     # print(nodes)
+    sorted_nodes = sorted(nodes, key=lambda k: k['value'], reverse=True)
+    # print(sorted_nodes)
 
     # 產生links list
     links = list()
@@ -90,10 +93,13 @@ if __name__ == '__main__':  # main
     for (u, v, wt) in NG.edges.data('weight'):
         # print(f"({u}, {v}, {wt})")
         links.append({"source": u, "target": v, "value": wt})
+
     # print(links)
+    sorted_links = sorted(links, key=lambda k: k['value'], reverse=True)
+    # print(sorted_links)
 
     # 合併nodes和links
-    json_data = {"nodes": nodes, "links": links}
+    json_data = {"nodes": sorted_nodes, "links": sorted_links}
 
     # 匯出JSON檔
     with open(json_path, 'w', encoding='utf-8') as file:

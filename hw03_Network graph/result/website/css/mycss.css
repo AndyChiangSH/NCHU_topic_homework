@@ -6,10 +6,11 @@ body {
     background: #222222;
     color: white;
     font-family: 'Nunito', sans-serif;
+    font-size: 20px;
 }
 
 .title h1 {
-    font-size: 50px;
+    font-size: 60px;
     text-align: center;
     margin: 40px 0px;
     font-family: MyChinese;
@@ -28,7 +29,7 @@ body {
 
 .view button {
     margin: 0px 20px;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .bi {
@@ -36,17 +37,19 @@ body {
 }
 
 .container {
-    width: 80%;
+    width: 60%;
     margin: 80px auto;
 }
 
 .container h2 {
     font-size: 40px;
     text-align: center;
+    margin: 50px 0px;
 }
 
-.nav-tabs {
+.nav-link {
     border-bottom: 2px solid #ffffff;
+    width: 50%;
 }
 
 .nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
@@ -62,12 +65,62 @@ body {
   border-color: #0d6efd #0d6efd #ffffff;
 }
 
-.info-card .nav-link {
-    font-size: 20px;
-}
-
 .table, .tab-pane p {
     color: #ffffff;
-    font-size: 20px;
     margin: 20px 0px;
+}
+
+table, th, td {
+    border: 1px solid #ffffff;
+}
+
+thead {
+    font-weight: 700;
+}
+
+.number {
+    color: #ffe81c
+}
+
+.table caption {
+    caption-side: top;
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 10px;
+    padding: 5px;
+    background-color: #008aff96;
+}
+
+.ref li {
+    line-height: 40px;
+}
+
+.ref li a {
+    color:#448fff;
+}
+
+.ref li a:hover {
+    color:#0d6efd;
+}
+
+.footer {
+    width: 100%;
+    background: #0d6efd;
+    padding: 15px 0px;
+}
+
+.info {
+    display: flex;
+    justify-content: center;
+    margin: 15px 0px;
+}
+
+.info p {
+    margin: 0px 20px;
+}
+
+.copyright {
+    font-size: 10px;
+    text-align: center;
+    margin: 15px 0px;
 }
