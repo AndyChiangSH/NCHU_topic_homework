@@ -124,3 +124,15 @@ thead {
     text-align: center;
     margin: 15px 0px;
 }
+
+.slider {
+    width: 70%;
+    background-color: #c5c5c5;
+    margin: 0px 40px;
+}
+
+.slider-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
