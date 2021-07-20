@@ -74,3 +74,5 @@ if __name__ == '__main__':  # main
         for (u, v, wt) in NG.edges.data('weight'):
             # print(f"({u}, {v}, {wt})")
             writer.writerow([u, v, wt])
+
+    print("CSV file complete!")

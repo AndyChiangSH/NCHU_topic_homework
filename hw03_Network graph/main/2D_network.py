@@ -1,38 +1,31 @@
 # 專題作業03-2D network graph with pyvis graph
 
 import networkx as nx
-import csv
+import json
 from pyvis.network import Network
 
 
 if __name__ == '__main__':  # main
 
     names_path = r"../src/charater_names.txt"
-    csv_path = r"../data/graph_data.csv"
-    output_path = r"../result/2D-network.html"
+    json_path = r"../data/graph_data.json"
+    output_path = r"../result/website/2D_network.html"
 
     with open(names_path, "r", encoding="utf-8") as file:
         lines = file.readlines()
         names = tuple([line[:-1] for line in lines])
 
-    # print(names)
-
     NG = nx.Graph()
     # NG.add_nodes_from(names)    # 空的點也會出來
-    # print(NG.nodes())
-    # print(NG.number_of_nodes())
 
-    # 開啟 CSV 檔案
-    with open(csv_path, newline='') as csvfile:
-        # 讀取 CSV 檔案內容
-        rows = csv.reader(csvfile)
-
-        # 以迴圈輸出每一列
-        for index, row in enumerate(rows):
-            if index != 0:
-                edge_title = f"<span style='font-size: 8px'>{row[0]} - {row[1]}: {row[2]}</span>"
-                NG.add_edge(row[0], row[1], value=int(
-                    row[2]), title=edge_title)
+    # 讀取JSON檔
+    with open(json_path, "r") as file:
+        data = json.load(file)
+        edges = data["links"]
+        for edge in edges:
+            edge_title = f"<span style='font-size: 8px'>{edge['source']} - {edge['target']}: {edge['value']}</span>"
+            NG.add_edge(edge['source'], edge['target'],
+                        value=int(edge['value']), title=edge_title)
 
     # for (u, v, wt) in NG.edges.data('weight'):
     #     print(f"({u}, {v}, {wt})")
@@ -65,5 +58,7 @@ if __name__ == '__main__':  # main
     # NT.set_edge_smooth("discrete")
     # NT.show_buttons(filter_=['physics'])
     NT.inherit_edge_colors(True)
-    # NT.save_graph('network.html')
-    NT.show(output_path)
+    NT.save_graph(output_path)
+    # NT.show(output_path)
+
+    print("2D network complete!")

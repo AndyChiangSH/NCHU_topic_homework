@@ -2,7 +2,6 @@
 
 import networkx as nx
 import matplotlib.pyplot as plt
-import csv
 import json
 
 
@@ -18,16 +17,16 @@ def names_in_paragraph(paragraph):  # 尋找段落中出現的人名
         for j in range(i+1, len(appear_names)):
             second_name = appear_names[j]
             # print(f"[{first_name}, {second_name}]")
-            if NG.has_edge(first_name, second_name):
+            if NG.has_edge(first_name, second_name):    # 兩點已經存在一條邊
                 NG[first_name][second_name]["weight"] += 1
-            else:
+            else:   # 兩點尚未存在邊
                 NG.add_edge(first_name, second_name, weight=1)
 
 
 if __name__ == '__main__':  # main
 
-    names_path = r"src/charater_names.txt"
-    json_path = r"data/graph_data.json"
+    names_path = r"../src/charater_names.txt"
+    json_path = r"../data/graph_data.json"
 
     with open(names_path, "r", encoding="utf-8") as file:
         lines = file.readlines()
@@ -41,7 +40,7 @@ if __name__ == '__main__':  # main
     # print(NG.number_of_nodes())
 
     for i in range(1, 5):
-        path = f"src/0{i}.txt"
+        path = f"../src/0{i}.txt"
         print(f"Read {path} now...")
 
         with open(path, "r", encoding="utf-8") as file:
@@ -89,7 +88,6 @@ if __name__ == '__main__':  # main
 
     # 產生links list
     links = list()
-
     for (u, v, wt) in NG.edges.data('weight'):
         # print(f"({u}, {v}, {wt})")
         links.append({"source": u, "target": v, "value": wt})
@@ -105,4 +103,4 @@ if __name__ == '__main__':  # main
     with open(json_path, 'w', encoding='utf-8') as file:
         json.dump(json_data, file)
 
-    print("JSON file complete")
+    print("JSON file complete!")
