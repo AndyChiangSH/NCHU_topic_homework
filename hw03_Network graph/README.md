@@ -22,6 +22,9 @@ hw03 - 射鵰英雄傳人物關係圖
 * 可調整數字滑桿設定顯示前N筆資料(從大排到小)
 
 ## Usage
+
+**因為資料是動態載入的，所以使用者也可以選擇自己想要的小說，照著底下流程跑一遍，就可以產生一樣的結果哦~ (當然有些細節還是要自己調整啦XD)**
+
 1. Clone或下載hw03_Network graph資料夾。
 2. 進入main資料夾。
 3. 執行 `character_name.py`，自動爬下射鵰英雄傳的人物清單 `src/charater_names_new.txt`，手動刪除或加入其他人物並另存為`src/charater_names.txt`。
