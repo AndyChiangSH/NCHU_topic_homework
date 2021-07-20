@@ -38,7 +38,13 @@ body {
 
 .container {
     width: 60%;
-    margin: 80px auto;
+    padding: 80px 0px;
+}
+
+@media screen and (max-width: 600px) {
+    .container {
+        width: 80%;
+    } 
 }
 
 .container h2 {
@@ -112,11 +118,13 @@ thead {
 .info {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
     margin: 15px 0px;
 }
 
 .info p {
-    margin: 0px 20px;
+    margin: 10px 20px;
 }
 
 .copyright {
