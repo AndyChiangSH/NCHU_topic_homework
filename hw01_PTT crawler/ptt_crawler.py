@@ -69,7 +69,7 @@ for i in range(2):
             one_text = "--".join(pre_texts)
             # 以\n切割，第一行標題不要
             texts = one_text.split("\n")[1:]
-            # 將每列分行
+            # 將每一行合併
             content = "\n".join(texts)
 
             # print(content)
@@ -83,7 +83,7 @@ for i in range(2):
 
             # 抓出所有留言
             comments = main_content.find_all("div", class_="push")
-            for index, comment in enumerate(comments):
+            for comment in comments:
                 push_tag = comment.find(
                     "span", class_="push-tag").string   # 分類標籤
                 push_userid = comment.find(
