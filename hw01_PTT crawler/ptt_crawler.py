@@ -95,17 +95,13 @@ for i in range(2):
 
                 # print(push_tag, push_userid, push_content, push_time)
 
+                dict1 = {"push_userid": push_userid,
+                         "push_content": push_content, "push_time": push_time}
                 if push_tag == "推 ":
-                    dict1 = {"push_userid": push_userid,
-                             "push_content": push_content, "push_time": push_time}
                     push_dic.append(dict1)
                 if push_tag == "→ ":
-                    dict1 = {"push_userid": push_userid,
-                             "push_content": push_content, "push_time": push_time}
                     arrow_dic.append(dict1)
                 if push_tag == "噓 ":
-                    dict1 = {"push_userid": push_userid,
-                             "push_content": push_content, "push_time": push_time}
                     shu_dic.append(dict1)
 
             # print(push_dic)
